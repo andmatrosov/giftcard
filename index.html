@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1.0, user-scalable=no">
+	<link rel="apple-touch-icon" sizes="76x76" href="img/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+	<link rel="manifest" href="img/favicon/site.webmanifest">
+	<link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<meta name="msapplication-TileColor" content="#da532c">
+	<meta name="theme-color" content="#ffffff">
+	
+	<!-- Social Media -->
+	<meta property="og:locale" content="ru_RU"/>
+	<meta property="og:type" content="article"/>
+	<meta property="og:title" content="Подарок"/>
+
+	<link rel="stylesheet" href="css/style.css">
+	<title>Подарочный сертификат</title>
+</head>
+<body>
+	<div class="card-wrapper" onClick="return true">
+		<div class="card middle" id="card" onClick="return true">
+		  <div class="card-front"></div>
+		  <div class="card-back">
+		  	<input class="card-code" id="card-code" value="giftcode">
+		  	<button class="card-button" id="card-button" ontouchstart=""
+        style="-webkit-tap-highlight-color: rgba(0,0,0,0);">Скопировать</button>
+		  </div>
+		  <div class="copy-success" id="copy-success">
+				<span>Промокод успешно скопирован. <br>Используй его при оформлении заказа.</span>
+			</div>
+		</div>
+		<a href="https://mixit.ru/" class="card-shop" id="card-shop">В магазин</a>
+	</div>
+<script>
+	const cardButton = document.getElementById('card-button'),
+			cardCode = document.getElementById('card-code'),
+			copySucc = document.getElementById('copy-success'),
+			shopBtn = document.getElementById('card-shop');
+
+
+	function getUrlParams() {
+		var url = window.location.search.match(/\?(.+)/)[1].split('&');
+		var res = {};
+		url.forEach(function(entry){
+			res[entry.split('=')[0]] = entry.split('=')[1];
+		});
+		return res.gift;
+	}
+
+	let giftCode = getUrlParams();
+
+	cardCode.value = giftCode;
+
+	function copySuccess() {
+		copySucc.classList.toggle('copy-success__active');
+	};
+
+	function showShopBtn() {
+		shopBtn.classList.add('card-shop__active');
+	}
+
+	function copy(str){
+	  let tmp   = document.createElement('INPUT'), // Создаём новый текстовой input
+	      focus = document.activeElement; // Получаем ссылку на элемент в фокусе (чтобы не терять фокус)
+
+	  tmp.value = str; // Временному input вставляем текст для копирования
+
+	  document.body.appendChild(tmp); // Вставляем input в DOM
+	  tmp.select(); // Выделяем весь текст в input
+	  document.execCommand('copy'); // Магия! Копирует в буфер выделенный текст (см. команду выше)
+	  document.body.removeChild(tmp); // Удаляем временный input
+	  focus.focus(); // Возвращаем фокус туда, где был
+	}
+
+	cardButton.onclick = function () {
+		copy(giftCode);
+		copySuccess();
+		showShopBtn();
+		setTimeout(copySuccess, 4000)
+	}
+</script>
+</body>
+</html>

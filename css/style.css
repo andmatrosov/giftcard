@@ -1,0 +1,318 @@
+/*Fonts*/
+@font-face {
+font-family: 'Proxima Nova Regular';
+src: url('../fonts/ProximaNova-Regular.eot');
+src: url('../fonts/ProximaNova-Regular.eot?#iefix') format('embedded-opentype'),
+url('../fonts/ProximaNova-Regular.woff') format('woff'),
+url('../fonts/ProximaNova-Regular.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+
+@font-face {
+font-family: 'Proxima Nova Bold';
+src: url('../fonts/ProximaNova-Bold.eot');
+src: url('../fonts/ProximaNova-Bold.eot?#iefix') format('embedded-opentype'),
+url('../fonts/ProximaNova-Bold.woff') format('woff'),
+url('../fonts/ProximaNova-Bold.ttf') format('truetype');
+font-weight: normal;
+font-style: normal;
+}
+
+/*Styles*/
+:root {
+	--text-color: #49c5e6;
+};
+
+*,
+*:before,
+*:after {
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+
+html,
+body {
+	font-family: 'Proxima Nova Regular', sans-serif;
+	font-size: 10px;
+}
+
+.card-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.middle {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	    -ms-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+}
+
+.card {
+	width: 47.6em;
+	height: 28.8em;
+	z-index: 2;
+}
+
+.card-front, 
+.card-back { 
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  position: absolute;
+  -webkit-transition: .6s linear;
+  -o-transition: .6s linear;
+  transition: .6s linear;
+}
+
+.card-front {
+	width: 100%;
+	height: 100%;
+	background-image: url(../img/card-front.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	-webkit-transform: perspective(600px) rotateY(0deg);
+	        transform: perspective(600px) rotateY(0deg);
+}
+
+.card-back {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-image: url(../img/card-back.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	-webkit-transform: perspective(600px) rotateY(180deg);
+	        transform: perspective(600px) rotateY(180deg);
+}
+
+.card-code {
+	font-family: 'Proxima Nova Bold', sans-serif;
+	font-weight: bold;
+	padding: 1em 2em;
+	width: 15em;
+	border: none;
+	border-radius: 4em;
+	color: var(--text-color);
+	background-color: #fff;
+	text-align: center;
+	font-size: 3em;
+	text-transform: uppercase;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	    -ms-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+}
+
+.card-code:focus {
+	outline: none;
+}
+
+.card-button {
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	    -ms-transform: translate(-50%, -50%);
+	        transform: translate(-50%, -50%);
+	padding: 1em 2em;
+	color: var(--text-color);
+	font-weight: bold;
+	border: none;
+	border-radius: 2em;
+	background-color: #fff;
+	text-transform: uppercase;
+	cursor: pointer;
+	-webkit-transition: all .1s linear;
+	-o-transition: all .1s linear;
+	transition: all .1s linear;
+}
+
+.card-button:focus {
+	outline: none;
+}
+
+.card-button:active {
+	-webkit-box-shadow: inset 0px 1px 3px rgba(0, 0, 0, .3);
+	        box-shadow: inset 0px 1px 3px rgba(0, 0, 0, .3)
+}
+
+.copy-success {
+	position: absolute;
+	top: -5em;
+	left: 50%;
+	width: 20em;
+	opacity: 0;
+	font-size: 1.5em;
+	-webkit-transform: translateX(-50%);
+	    -ms-transform: translateX(-50%);
+	        transform: translateX(-50%);
+	padding: .5em 1em;
+	background-color: rgba(0, 0, 0, .3);
+	border-radius: .2em;
+	-webkit-transition: .3s all linear;
+	-o-transition: .3s all linear;
+	transition: .3s all linear;
+	text-align: center;
+}
+
+.copy-success__active {
+	opacity: 1;
+}
+
+.copy-success span {
+	display: inline-block;
+	text-align: center;
+	color: #fff;
+	font-weight: light;
+}
+
+.card-shop {
+	display: inline-block;
+	position: relative;
+	top: calc(50% + 3em);
+	left: 50%;
+	opacity: 0;
+	-webkit-transform: translateX(-50%);
+	    -ms-transform: translateX(-50%);
+	        transform: translateX(-50%);
+	text-decoration: none;
+	color: #fff;
+	background-color: var(--text-color);
+	font-size: 2em;
+	padding: .7em 2em;
+	border-radius: 2em;
+	font-weight: bold;
+	z-index: 1;
+	-webkit-transition: all .4s linear;
+	-o-transition: all .4s linear;
+	transition: all .4s linear;
+}
+
+.card-shop__active {
+	top: calc(50% + 9em);
+	opacity: 1;
+}
+
+.card:hover > .card-front {
+    -webkit-transform: perspective(600px) rotateY(-180deg);
+            transform: perspective(600px) rotateY(-180deg);
+}
+
+.card:hover > .card-back {
+    -webkit-transform: perspective(600px) rotateY(0deg);
+            transform: perspective(600px) rotateY(0deg);
+}
+
+/*Media Quires*/
+
+@media (min-width: 300px) and (max-width: 320px) {
+	html,
+	body {
+		font-size: 6px;
+	}
+
+	.card-code {
+		font-size: 2em;
+		width: 15em;
+		padding: .4em .8em;
+	}
+
+	.card-button {
+		padding: .7em 1.5em;
+		font-size: 1.7em;
+	}
+}
+
+@media (min-width: 321px) and (max-width: 767px) {
+	html,
+	body {
+		font-size: 7px;
+	}
+
+	.card-code {
+		font-size: 2em;
+		width: 15em;
+		padding: .7em 1em;
+	}
+
+	.card-button {
+		padding: .7em 1.5em;
+		font-size: 1.7em;
+	}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+	html,
+	body {
+		font-size: 9px;
+	}
+
+	.card-code {
+		font-size: 2em;
+		width: 15em;
+		padding: .7em 1em;
+	}
+
+	.card-button {
+		padding: .7em 1.5em;
+		font-size: 1.7em;
+	}
+}
+
+@media (min-width: 991px) and (max-width: 1199px) {
+	html,
+	body {
+		font-size: 10px;
+	}
+
+	.card-code {
+		font-size: 2em;
+		width: 15em;
+		padding: .7em 1em;
+	}
+
+	.card-button {
+		padding: .7em 1.5em;
+		font-size: 1.7em;
+	}
+}
+@media (min-width: 1200px) {
+	html,
+	body {
+		font-size: 10px;
+	}
+
+	.card-code {
+		font-size: 2em;
+		width: 15em;
+		padding: .7em 1em;
+	}
+
+	.card-button {
+		padding: .7em 1.5em;
+		font-size: 1.7em;
+	}
+}
+
+
+@media(hover: hover) and (pointer: fine) {
+	.card:hover > .card-front {
+	    -webkit-transform: perspective(600px) rotateY(-180deg);
+	            transform: perspective(600px) rotateY(-180deg);
+	}
+
+	.card:hover > .card-back {
+	    -webkit-transform: perspective(600px) rotateY(0deg);
+	            transform: perspective(600px) rotateY(0deg);
+	}
+}
